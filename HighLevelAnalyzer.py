@@ -266,7 +266,8 @@ class AirDataAnalyser(HighLevelAnalyzer):
                             'data', self.current_packet.start_time, self.current_packet.stop_time, {
                                 'label': self.current_packet.content.label,
                                 'flag': self.current_packet.content.flag,
-                                'value': round(self.current_packet.content.float_value, 3) 
+                                # Logic SW crash when NaN is returned, as a workaround we need to convert the float in string
+                                'value': str(round(self.current_packet.content.float_value, 3))
                             })
 
                     self.current_packet = None
