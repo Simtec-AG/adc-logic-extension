@@ -149,7 +149,7 @@ class DataPacket:
         self.__soh = soh
         
     def __parse_header(self, int_value):
-        if int_value & MARKER_BIT == 0 :
+        if int_value & MARKER_BIT == 0:
             #marker bit not set
             return "Marker bit not set"
         
@@ -169,7 +169,7 @@ class DataPacket:
             string_value = "".join(map(chr,self.__data[1:9]))
             bytes_object = bytes.fromhex(string_value)
             self.float_value = struct.unpack('>f', bytes_object)[0]
-        except :
+        except:
             return "Could not convert hex value in float"
 
     def parse_byte(self, int_value):
@@ -248,7 +248,7 @@ class AirDataAnalyser(HighLevelAnalyzer):
             if int_value in DATA_LABELS:
                 self.current_packet = AirDataPacket(frame.start_time, int_value)
 
-            elif self.current_packet is not None:                
+            elif self.current_packet is not None:
                 self.current_packet.parse_byte(int_value, frame.end_time)
 
                 if self.current_packet.stop_time is not None:
