@@ -1,21 +1,21 @@
 
-  # Swiss Air Data decoder
+  # Swiss Air Data Decoder
   
 ## Overview
 
 This Saleae Logic2 high level analyser extension decodes air data frame sent by a module from Simtec AG <https://www.swiss-airdata.com/>. 
 
-An analyzer should decode the logic level to provide bytes to this High Level Analyser. For now, it is compatible with RS485 bus as it can be decoded by the Async Serial but not compatible with ARINC-429 bus. Details about the format used to send the air data can be found in devices Interface Control Document
+It is compatible with the following products: ADES-12, ADP-5.5, PSS8 and PMH air data computer. However it is compatible only with RS485 bus as it can be decoded by the Async Serial analyzer but not with ARINC-429 bus. Details about the format used to send the air data can be found in devices *Interface Control Document*.
 
-The label and the value of the data transmitted are displayed on top of the frame, as shown bellow
+The label and the value of the data transmitted are displayed on top of the frame, as shown bellow:
 
 ![frame_image](support/frame-parser.png)
 
-In the data table, flag of the data transmitted is also displayed
+In the data table, flag of the data transmitted is also displayed:
 
 ![table_full](support/table-all-data.png)
 
-It can be convenient to add a filter on the table to see the time evolution of a specific data.
+It can be convenient to add a filter on the table to see the time evolution of a specific data:
 
 ![table_filter](support/table-filter.png)
 
@@ -39,7 +39,7 @@ To try this extension out for yourself, you will first need to capture a communi
 
  ## Notes
 
-Tested with Logic 2, version 2.3.19
+Tested with Logic 2, version 2.3.26
 
 This library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
 even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
