@@ -3,15 +3,15 @@
   
 ## Overview
 
-This Saleae Logic2 high level analyser extension decodes air data frame sent by a module from Simtec AG <https://www.swiss-airdata.com/>. 
+This Saleae Logic2 high level analyser extension decodes air data frame sent by a module from Simtec AG <https://www.swiss-airdata.com/> with the help of Saleae products. 
 
-It is compatible with the following products: ADES-12, ADP-5.5, PSS8 and PMH air data computer. However it is compatible only with RS485 bus as it can be decoded by the Async Serial analyzer but not with ARINC-429 bus. Details about the format used to send the air data can be found in devices *Interface Control Document*.
+It is compatible with the following products: ADES-12, ADP-5.5, PSS8 and PMH air data computer. However it is compatible only with RS485 data interface as it can be decoded by the Async Serial analyzer. Details about the format used to send the air data can be found in devices *Interface Control Document*.
 
 The label and the value of the data transmitted are displayed on top of the frame, as shown bellow:
 
 ![frame_image](support/frame-parser.png)
 
-In the data table, flag of the data transmitted is also displayed:
+In the data table, flags of the data transmitted are also displayed:
 
 ![table_full](support/table-all-data.png)
 
@@ -25,7 +25,7 @@ It can be convenient to add a filter on the table to see the time evolution of a
 
 To try this extension out for yourself, you will first need to capture a communication data:
 
- 1. Open Logic 2 (2.3.0 or greater)
+ 1. Open Logic 2 (2.3.0 or greater) <https://www.saleae.com/downloads/>
  1. Capture a frame sent by an air data computer, pin RS485-A. If you don't have one you can use the provided capture to try this extension [support/example-capture.sal](support/example-capture.sal)
  1. Add an *Async Serial* analyser, with the following configuration
     - Bit rate : depends on the configuration
@@ -39,7 +39,7 @@ To try this extension out for yourself, you will first need to capture a communi
 
  ## Notes
 
-Tested with Logic 2, version 2.3.26
+Tested with Logic 2, version 2.3.26 and Saleae Logic Pro 8 hardware.
 
 This library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
 even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
