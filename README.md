@@ -1,11 +1,11 @@
 
-  # Swiss Air Data Decoder
+  # Swiss Air-Data Decoder
   
 ## Overview
 
-This Saleae Logic2 high level analyser extension decodes air data frame sent by a module from Simtec AG <https://www.swiss-airdata.com/> with the help of Saleae products. 
+This Saleae Logic2 high level analyser extension decodes messages sent by an air data computer from Simtec AG <https://www.swiss-airdata.com/> with the help of Saleae products. 
 
-It is compatible with the following products: ADES-12, ADP-5.5, PSS8 and PMH air data computer. However it is compatible only with RS485 data interface as it can be decoded by the Async Serial analyzer. Details about the format used to send the air data can be found in devices *Interface Control Document*.
+It is compatible with the following products: ADS-12, AOA-16, ADP-5.5, PSS8 and PMH air data computer. However it is compatible only with RS485 data interface as it can be decoded by the Async Serial analyzer. Details about the format used to send the air data can be found in devices *Interface Control Document*.
 
 The label and the value of the data transmitted are displayed on top of the frame, as shown bellow:
 
@@ -19,14 +19,14 @@ It can be convenient to add a filter on the table to see the time evolution of a
 
 ![table_filter](support/table-filter.png)
 
-**Warning: Only data and status packet are parsed. Commands, such as QNH setting and sensor zeroing are ignored by this extension** 
+**Warning: Only data and status messages are parsed. Commands, such as QNH setting and sensor zeroing are ignored by this extension** 
 
  ## How to use it
 
 To try this extension out for yourself, you will first need to capture a communication data:
 
  1. Open Logic 2 (2.3.0 or greater) <https://www.saleae.com/downloads/>
- 1. Capture a frame sent by an air data computer, pin RS485-A. If you don't have one you can use the provided capture to try this extension [support/example-capture.sal](support/example-capture.sal)
+ 1. Capture a message sent by an air data computer, pin RS485-A. If you don't have one you can use the provided capture to try this extension [support/example-capture.sal](support/example-capture.sal)
  1. Add an *Async Serial* analyser, with the following configuration
     - Bit rate : depends on the configuration
     - Bits per frame: 8
