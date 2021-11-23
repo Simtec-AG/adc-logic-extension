@@ -2,7 +2,7 @@
   "name": "Swiss Air Data",
   "apiVersion": "1.0.0",
   "author": "Simtec AG",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Decodes frame sent by a swiss air data computer",
   "extensions": {
     "Swiss Air Data": {
