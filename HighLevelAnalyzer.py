@@ -37,6 +37,9 @@ SOH2_LABELS = {
     0x5: 'CAS-rate',
     0x6: 'TAS-rate',
     0x7: 'Hbaro',
+    0x8: 'EAS',
+    0x9: 'IAS',
+    0xA: 'VMO',
     0xC: 'DTR',
     0xD: 'HTR',
     0xE: 'CUR',
@@ -50,9 +53,13 @@ SOH3_LABELS = {
     0x4: 'dPaos',
     0x5: 'IAT',
     0x6: 'BAT',
+    0xA: 'ST-Qc',
+    0xB: 'ST-Ps',
+    0xC: 'ST-AoA',
+    0xD: 'ST-AoS',
 }
 
-#Map of SOH3 LABEL
+#Map of SOH5 LABEL
 SOH5_LABELS = {
     0x1: 'Qc*',
     0x2: 'Ps*',
