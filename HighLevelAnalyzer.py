@@ -79,6 +79,13 @@ DATA_LABELS = {
     0x05: SOH5_LABELS,
 }
 
+#Map of all Status
+STATUS_LABELS = {
+    0x01: {0xF: 'Gen. Status'},
+    0x02: {0xF: 'Htr. Status'},
+    0x03: {0xF: 'Config'},
+}
+
 #Map of the different flags and their values
 DATA_FLAG = {
     0x00: 'valid',
@@ -93,16 +100,24 @@ DATA_FLAG = {
 MARKER_BIT = 0x80
 
 class StatusPacket:
-    # Start of header and label defining a status packet
-    SOH = 0x01
-    LABEL = 0xF
-
-    def __init__(self):
+    def __init__(self, soh):
         self.int_value = None
         self.is_finish = False
+        self.label = None
 
         self.__data = []
-    
+        self.__soh = soh
+
+    def __parse_header(self, int_value):
+        if int_value & MARKER_BIT == 0:
+            #marker bit not set
+            return "Marker bit not set"
+        
+        try:
+            self.label = STATUS_LABELS[self.__soh][int_value & 0x0F]
+        except KeyError:
+            return "Status ID not valid: "
+
     def __parse_data(self, int_value):
         ch = chr(int_value)
         if ((ch < '0' or ch > '9') and (ch < 'A' or ch > 'F')):
@@ -122,7 +137,7 @@ class StatusPacket:
 
         #header byte
         if len(self.__data) == 1:
-            return
+            return self.__parse_header(int_value)
 
         #data byte
         elif len(self.__data) > 1 and len(self.__data) < 6:
@@ -139,7 +154,7 @@ class StatusPacket:
 
     @classmethod
     def is_status_packet(cls, soh, header):
-        if (soh == cls.SOH) and (header == (cls.LABEL | MARKER_BIT)):
+        if (soh in STATUS_LABELS) and ((header & 0x0F) in STATUS_LABELS[soh]):
             return True
         else:
             return False
@@ -218,7 +233,7 @@ class AirDataPacket():
         '''
         if self.content is None:
             if StatusPacket.is_status_packet(self.soh, int_value):
-                self.content = StatusPacket()
+                self.content = StatusPacket(self.soh)
             else:
                 self.content = DataPacket(self.soh)
 
@@ -236,7 +251,7 @@ class AirDataAnalyser(HighLevelAnalyzer):
     result_types = {
         'error': {'format': "ERROR: {{data.error_msg}}"},
         'data': {'format': "{{data.label}}: {{data.value}}"},
-        'status': {'format': "Status = {{data.hex_value}}"}
+        'status': {'format': "{{data.label}} = {{data.hex_value}}"}
     }
 
     def __init__(self):
@@ -266,7 +281,10 @@ class AirDataAnalyser(HighLevelAnalyzer):
 
                     elif isinstance(self.current_packet.content, StatusPacket):
                         returned_frame = AnalyzerFrame(
-                            'status', self.current_packet.start_time, self.current_packet.stop_time, {'hex_value': hex(self.current_packet.content.int_value)})
+                            'status', self.current_packet.start_time, self.current_packet.stop_time, {
+                                'label': self.current_packet.content.label,
+                                'hex_value': hex(self.current_packet.content.int_value)
+                            })
 
                     else:
                         returned_frame = AnalyzerFrame(
