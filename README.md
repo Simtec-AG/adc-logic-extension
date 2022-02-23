@@ -5,7 +5,7 @@
 
 This Saleae Logic2 high level analyser extension decodes messages sent by an air data computer from Simtec AG <https://www.swiss-airdata.com/> with the help of Saleae products. 
 
-It is compatible with the following products: ADS-12, AOA-16, ADP-5.5, PSS8 and PMH air data computer. However it is compatible only with RS485 data interface as it can be decoded by the Async Serial analyzer. Details about the format used to send the air data can be found in devices *Interface Control Document*.
+The software decodes data labels from the  _ADC-10_, _ADS-12_, _AOA-16_, _ADP-5.5_, _PSS-8_ and _PMH_ air data computers and pressure modules. However it is compatible only with RS485 data interface as it can be decoded by the Async Serial analyzer. Details about the format used to send the air data can be found in devices *Interface Control Document*.
 
 The label and the value of the data transmitted are displayed on top of the frame, as shown bellow:
 
@@ -19,7 +19,7 @@ It can be convenient to add a filter on the table to see the time evolution of a
 
 ![table_filter](support/table-filter.png)
 
-**Warning: Only data and status messages are parsed. Commands, such as QNH setting and sensor zeroing are ignored by this extension** 
+**Warning: Only data and status messages are parsed. Commands such as QNH setting and sensor zeroing are ignored by this extension** 
 
  ## How to use it
 
