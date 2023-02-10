@@ -27,7 +27,7 @@ SOH1_LABELS = {
     0xB: 'dp1',
     0xC: 'dp2',
     0xD: 'PCB',
-    # 0xE: 'QNH cmd',
+    0xE: 'QNH',
 }
 
 #Map of SOH2 LABEL
